@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html ng-app="huyovy">
+<head>
+  <title></title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+	<meta charset="utf-8">
+  <link href="app.less" type="text/css" rel="stylesheet/less">
+</head>
+<body>
+
+  <!-- Livereload script for development only (stripped during dist build) -->
+  <script src="http://localhost:35729/livereload.js" data-concat="false"></script>
+
+  <script src="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.js"></script>
+
+  <!-- JS from Bower Components -->
+  <script src="bower_components/less.js/dist/less-1.6.2.js" data-concat="false"></script>
+  <script src="bower_components/jquery/jquery.js"></script>
+  <script src="bower_components/bootstrap/dist/js/bootstrap.js"></script>
+  <script src="bower_components/underscore/underscore.js"></script>
+  <script src="bower_components/moment/moment.js"></script>
+  <script src="bower_components/angular/angular.js"></script>
+  <script src="bower_components/angular-ui-router/release/angular-ui-router.js"></script>
+  <script src="bower_components/angular-animate/angular-animate.js"></script>
+  <script src="bower_components/angular-resource/angular-resource.js"></script>
+  <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
+  <script src="bower_components/angular-ui-utils/ui-utils.js"></script>
+  <script src="bower_components/angular-leaflet-directive/dist/angular-leaflet-directive.js"></script>
+  <script src="bower_components/papa.parse/jquery.parse.js"></script>
+  <script src="bower_components/lodash/dist/lodash.js"></script>
+  <script src="bower_components/headjs/dist/1.0.0/head.load.js"></script>
+  <!-- Add New Bower Component JS Above -->
+
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.1/leaflet.css">
+
+  <!-- Main App JS -->
+  <script src="app.js"></script>
+  <script src="map/map.js"></script>
+  <script src="map/partial/map/map.js"></script>
+  <script src="map/directive/map-view/map-view.js"></script>
+  <script src="db/db.js"></script>
+  <script src="db/service/locations.js"></script>
+  <script src="db/service/profiles.js"></script>
+  <script src="db/service/stream.js"></script>
+  <!-- Add New Component JS Above -->
+
+  <div>
+    <div id="content" class="container">
+      <div class="row">
+        <div ui-view>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</body>
+</html>
