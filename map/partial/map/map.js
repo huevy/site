@@ -1,6 +1,15 @@
 angular.module('map')
   .controller('MapCtrl',
-    function($scope, $window, $q, locations, profiles, members, leafletData) {
+    function($scope,
+      $window,
+      $q,
+      locations,
+      profiles,
+      members,
+      htmlIcon,
+      leafletData) {
+      var HtmlIcon = htmlIcon;
+
       var map = null;
       var L = $window.L;
 
@@ -27,7 +36,11 @@ angular.module('map')
           return !!member.geo;
         }).map(function(member) {
           var avatar = member.profile_image_url_https;
-          var mrk = new L.Marker([member.geo.lat, member.geo.lng]);
+          var mrk = new L.Marker([member.geo.lat, member.geo.lng], {
+            icon: new HtmlIcon({
+              html: '<div style="background:white;color:red;">' + member.name + '</div>'
+            })
+          });
           mrk.bindPopup(member.name);
           return mrk;
 
