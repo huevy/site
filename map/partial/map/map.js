@@ -1,6 +1,9 @@
 angular.module('map')
   .controller('MapCtrl',
-    function($scope, $q, locations, profiles) {
+    function($scope, $window, $q, locations, profiles, members, leafletData) {
+      var map = null;
+      var L = $window.L;
+
       angular.extend($scope, {
         center: {
           lat: 49.306424,
@@ -13,6 +16,31 @@ angular.module('map')
         },
         markers: []
       });
+
+      leafletData.getMap('mapLeafletMain').then(function(_map) {
+        map = _map;
+        init();
+      });
+
+      function populateMarkersFromMembers(members) {
+        debugger
+        var markers = _(members).filter(function(member) {
+          return !!member.geo;
+        }).map(function(member) {
+          var avatar = member.profile_image_url_https;
+          var mrk = new L.Marker([member.geo.lat, member.geo.lng]);
+          mrk.bindPopup(member.name);
+          return mrk;
+
+        }).value();
+
+        for (var i = 0; i < markers.length; i++) {
+          var m = markers[i];
+          m.addTo(map);
+        }
+
+      }
+
 
       function populateMarkers(locs, profs) {
         $scope.markers = _(locs).map(function(loc) {
@@ -34,13 +62,15 @@ angular.module('map')
       }
 
       function init() {
-        $q.all({
-          profiles: profiles.get(),
-          locations: locations.get()
-        }).then(function(res) {
-          populateMarkers(res.locations, res.profiles);
-        });
+        // $q.all({
+        //   profiles: profiles.get(),
+        //   locations: locations.get()
+        // }).then(function(res) {
+        //   populateMarkers(res.locations, res.profiles);
+        // });
+        members.get().then(populateMarkersFromMembers);
+
+
       }
 
-      init();
     });
