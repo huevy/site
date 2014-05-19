@@ -23,7 +23,6 @@ angular.module('map')
       });
 
       function populateMarkersFromMembers(members) {
-        debugger
         var markers = _(members).filter(function(member) {
           return !!member.geo;
         }).map(function(member) {
@@ -38,39 +37,10 @@ angular.module('map')
           var m = markers[i];
           m.addTo(map);
         }
-
-      }
-
-
-      function populateMarkers(locs, profs) {
-        $scope.markers = _(locs).map(function(loc) {
-          var user = profs.byScreenName[loc.screen_name] || {};
-          var avatar = user.avatar;
-
-          return {
-            lat: loc.lat,
-            lng: loc.lng,
-            message: loc.name,
-            draggable: true,
-            icon: {
-              iconSize: [48, 48],
-              iconUrl: avatar
-            },
-            $id$: loc.screen_name
-          };
-        }).indexBy('$id$').value();
       }
 
       function init() {
-        // $q.all({
-        //   profiles: profiles.get(),
-        //   locations: locations.get()
-        // }).then(function(res) {
-        //   populateMarkers(res.locations, res.profiles);
-        // });
         members.get().then(populateMarkersFromMembers);
-
-
       }
 
     });
