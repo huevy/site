@@ -11,20 +11,20 @@ angular.module('map').directive('marker', function($interval, $timeout) {
 
 
 
-      function onTwit(event, twit) {
-        console.log('member twit', twit.text);
-        img.tooltip({
-          placement: 'right',
-          title: twit.text
-        });
-        img.tooltip('show');
-        $timeout(function() {
-          img.tooltip('hide');
-          img.tooltip('destroy');
-        }, 10000);
-      }
+      // function onTwit(event, twit) {
+      //   console.log('member twit', twit.text);
+      //   img.tooltip({
+      //     placement: 'right',
+      //     title: twit.text
+      //   });
+      //   img.tooltip('show');
+      //   $timeout(function() {
+      //     img.tooltip('hide');
+      //     img.tooltip('destroy');
+      //   }, 10000);
+      // }
 
-      scope.$on('db:stream:twit:' + scope.member.screen_name, onTwit);
+      // scope.$on('db:stream:twit:' + scope.member.screen_name, onTwit);
     }
   };
 });

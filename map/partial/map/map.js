@@ -11,7 +11,9 @@ angular.module('map')
 
       var L = $window.L;
       var map = null;
-      var baloon = L.popup();
+      var baloon = L.popup({
+        offset: [0, -20]
+      });
       var markersByScreenName = {};
 
       angular.extend($scope, {
@@ -43,7 +45,7 @@ angular.module('map')
           var mrk = new L.Marker([member.geo.lat, member.geo.lng], {
             icon: new HtmlIcon({
               scope: scope,
-              html: '<div style="position:absolute;"><marker member="member"></marker></div>'
+              html: '<div style="position:absolute;"><marker member="member"></marker></div>',
             })
           });
           mrk.bindPopup(member.name);
