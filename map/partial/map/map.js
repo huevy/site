@@ -9,8 +9,10 @@ angular.module('map')
       HtmlIcon,
       leafletData) {
 
-      var map = null;
       var L = $window.L;
+      var map = null;
+      var baloon = L.popup();
+      var markersByScreenName = {};
 
       angular.extend($scope, {
         center: {
@@ -31,6 +33,8 @@ angular.module('map')
       });
 
       function populateMarkersFromMembers(members) {
+        markersByScreenName = {};
+
         var markers = _(members).filter(function(member) {
           return !!member.geo;
         }).map(function(member) {
@@ -43,6 +47,9 @@ angular.module('map')
             })
           });
           mrk.bindPopup(member.name);
+
+          markersByScreenName[member.screen_name] = mrk;
+
           return mrk;
 
         }).value();
@@ -55,6 +62,22 @@ angular.module('map')
 
       function init() {
         members.get().then(populateMarkersFromMembers);
+        $scope.$on('db:stream:twit', onTwit);
+      }
+
+      function onTwit(event, twit) {
+        var sName = twit.screenName;
+        var mrk = markersByScreenName[sName];
+        if (!mrk) {
+          return;
+        }
+        showBaloon(mrk, twit);
+      }
+
+      function showBaloon(mrk, twit) {
+        baloon.setContent(twit.text); //TODO: XSS!
+        baloon.setLatLng(mrk.getLatLng());
+        baloon.openOn(map);
       }
 
     });
