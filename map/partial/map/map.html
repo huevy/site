@@ -1,4 +1,13 @@
 <div class="col-md-12" ng-controller="MapCtrl">
+  <div class="row">
+    <div
+      ng-repeat="_ in tail"
+      class="well col-md-2">
+      {{_.twit.screenName}}
+    </div>
+  </div>
+
+
   <leaflet
     id="mapLeafletMain"
     defaults="defaults"

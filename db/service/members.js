@@ -34,9 +34,15 @@ angular.module('db')
       get: function() {
 
         return $q.all([
-          $http.get('/data/users.json').then(getData),
-          $http.get('/data/locations.json').then(getData),
-          $http.get('/data/geo.json').then(getData)
+          $http.get('/data/users.json', {
+            cache: true
+          }).then(getData),
+          $http.get('/data/locations.json', {
+            cache: true
+          }).then(getData),
+          $http.get('/data/geo.json', {
+            cache: true
+          }).then(getData)
         ]).then(compose);
 
       }

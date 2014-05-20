@@ -6,6 +6,7 @@ angular.module('map')
       locations,
       profiles,
       members,
+      dbTail,
       HtmlIcon,
       leafletData) {
 
@@ -63,8 +64,15 @@ angular.module('map')
       }
 
       function init() {
-        members.get().then(populateMarkersFromMembers);
+        members.get().then(function(members) {
+          populateMarkersFromMembers(members);
+          dbTail.init();
+          $scope.tail = dbTail.data;
+        });
         $scope.$on('db:stream:twit', onTwit);
+        $scope.$watchCollection('tail', function() {
+          console.log($scope.tail);
+        });
       }
 
       function onTwit(event, twit) {
