@@ -6,9 +6,8 @@ angular.module('map')
       locations,
       profiles,
       members,
-      htmlIcon,
+      HtmlIcon,
       leafletData) {
-      var HtmlIcon = htmlIcon;
 
       var map = null;
       var L = $window.L;
@@ -35,10 +34,12 @@ angular.module('map')
         var markers = _(members).filter(function(member) {
           return !!member.geo;
         }).map(function(member) {
-          var avatar = member.profile_image_url_https;
+          var scope = $scope.$new();
+          scope.member = member;
           var mrk = new L.Marker([member.geo.lat, member.geo.lng], {
             icon: new HtmlIcon({
-              html: '<div style="background:white;color:red;">' + member.name + '</div>'
+              scope: scope,
+              html: '<div style="position:absolute;"><marker member="member"></marker></div>'
             })
           });
           mrk.bindPopup(member.name);
