@@ -9,20 +9,22 @@ angular.module('map').directive('marker', function($interval, $timeout) {
     link: function(scope, element, attrs, fn) {
       var img = $(element).find('img');
 
-      img.tooltip({
-        container: 'body',
-        placement: 'right'
-      });
 
-      $interval(function() {
-        if (Math.random() < 0.1) {
 
-          img.tooltip('show');
-          $timeout(function() {
-            img.tooltip('hide');
-          }, 1000);
-        }
-      }, 2000);
+      function onTwit(event, twit) {
+        console.log('member twit', twit.text);
+        img.tooltip({
+          placement: 'right',
+          title: twit.text
+        });
+        img.tooltip('show');
+        $timeout(function() {
+          img.tooltip('hide');
+          img.tooltip('destroy');
+        }, 10000);
+      }
+
+      scope.$on('db:stream:twit:' + scope.member.screen_name, onTwit);
     }
   };
 });

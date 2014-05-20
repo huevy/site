@@ -8,6 +8,7 @@ angular.module('db').factory('stream',
       sock.on('twit', function(data) {
         console.log('twit', data);
         $rootScope.$broadcast('db:stream:twit', data);
+        $rootScope.$broadcast('db:stream:twit:' + data.screenName, data);
       });
     }
 
