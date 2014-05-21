@@ -4,7 +4,9 @@ angular.module('db').factory('dbStream',
 
 
     function listen() {
-      var sock = $window.io.connect(streamConfig.socket);
+      var sock = $window.io.connect(streamConfig.socket, {
+        transports: ['xhr-polling']
+      });
       sock.on('twit', function(data) {
         console.log('twit', data);
         $rootScope.$broadcast('db:stream:twit', data);

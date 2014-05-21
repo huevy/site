@@ -7,12 +7,12 @@ angular.module('huyovy').config(function($stateProvider, $urlRouterProvider) {
 
 });
 
-// angular.module('huyovy').run(function(stream) {
-//     stream.init();
-// });
-angular.module('huyovy').run(function(dbFakeStream) {
-    dbFakeStream.init();
+angular.module('huyovy').run(function(dbStream) {
+    dbStream.init();
 });
+// angular.module('huyovy').run(function(dbFakeStream) {
+//     dbFakeStream.init();
+// });
 
 angular.module('huyovy').run(function($rootScope) {
 

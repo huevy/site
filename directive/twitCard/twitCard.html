@@ -1,10 +1,12 @@
 <div class="d-twit-card">
-  <img class="media-object pull-left" ng-src="{{media.member.profile_image_url_https}}" />
-  <div class="media-body">
-    <h5 class="media-heading">
-      {{media.member.name}}
-    </h5>
-    {{media.twit.text}}
-  </div>
+  <a class="e-link" target="_blank" ng-href="https://twitter.com/{{media.twit.screenName}}/status/{{media.twit.id}}">
+    <img class="media-object pull-left" ng-src="{{media.member.profile_image_url_https}}" />
+    <div class="media-body">
+      <h5 class="media-heading">
+        {{media.member.name}}
+      </h5>
+      {{media.twit.text}}
+    </div>
+  </a>
 </div>
 
