@@ -1,10 +1,10 @@
-angular.module('db').factory('dbTail', function($rootScope, members) {
+angular.module('db').factory('dbTail', function($rootScope, dbMembers) {
   var MAX_LEN = 7;
 
   var dbTail = {
     data: [],
     init: function() {
-      members.get().then(function(memberItems) {
+      dbMembers.get().then(function(memberItems) {
         this.members = _(memberItems).indexBy('screen_name').value();
         $rootScope.$on('db:stream:twit', onTwit.bind(this));
       }.bind(this));

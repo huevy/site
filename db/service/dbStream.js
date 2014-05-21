@@ -1,4 +1,4 @@
-angular.module('db').factory('stream',
+angular.module('db').factory('dbStream',
   function($window, $q, $rootScope, streamConfig) {
     var head = $window.head;
 

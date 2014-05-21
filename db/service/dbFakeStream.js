@@ -1,4 +1,4 @@
-angular.module('db').factory('dbFakeStream', function($interval, $rootScope, members) {
+angular.module('db').factory('dbFakeStream', function($interval, $rootScope, dbMembers) {
 
 
   function emulate(memberItems) {
@@ -17,7 +17,7 @@ angular.module('db').factory('dbFakeStream', function($interval, $rootScope, mem
 
   var dbFakeStream = {
     init: function() {
-      members.get().then(function(mem) {
+      dbMembers.get().then(function(mem) {
         $interval(emulate.bind(null, mem), 2000);
       });
     }

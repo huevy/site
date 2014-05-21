@@ -3,9 +3,7 @@ angular.module('map')
     function($scope,
       $window,
       $q,
-      locations,
-      profiles,
-      members,
+      dbMembers,
       dbTail,
       HtmlIcon,
       leafletData) {
@@ -35,10 +33,10 @@ angular.module('map')
         init();
       });
 
-      function populateMarkersFromMembers(members) {
+      function populateMarkersFromMembers(memberItems) {
         markersByScreenName = {};
 
-        var markers = _(members).filter(function(member) {
+        var markers = _(memberItems).filter(function(member) {
           return !!member.geo;
         }).map(function(member) {
           var scope = $scope.$new();
@@ -64,8 +62,8 @@ angular.module('map')
       }
 
       function init() {
-        members.get().then(function(members) {
-          populateMarkersFromMembers(members);
+        dbMembers.get().then(function(memberItems) {
+          populateMarkersFromMembers(memberItems);
           dbTail.init();
           $scope.tail = dbTail.data;
         });

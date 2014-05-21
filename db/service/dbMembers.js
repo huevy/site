@@ -1,5 +1,5 @@
 angular.module('db')
-  .factory('members', function($q, $http) {
+  .factory('dbMembers', function($q, $http) {
 
 
     function compose(collections) {
