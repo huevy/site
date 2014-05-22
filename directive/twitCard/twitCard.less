@@ -1,13 +1,19 @@
 .d-twit-card {
-  .make-sm-column(3);
+  // .make-sm-column(3);
   .media;
   font-size: 0.8em;
-  height: 80px;
+  // height: 100px;
   background: #9EB9E0;
   padding: 4px;
   border-right: 1px solid @body-bg;
 
-  .e-link a {
-    color: none;
+  a.e-link {
+    color: @text-color;
+  }
+  a.e-link:hover {
+    text-decoration: none;
+  }
+  .e-ava {
+    margin-right: 4px;
   }
 }

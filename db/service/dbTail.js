@@ -1,5 +1,5 @@
 angular.module('db').factory('dbTail', function($rootScope, dbMembers) {
-  var MAX_LEN = 7;
+  var MAX_LEN = 100;
 
   var dbTail = {
     data: [],

@@ -13,7 +13,6 @@ angular.module('huyovy').run(function(dbStream) {
 // angular.module('huyovy').run(function(dbFakeStream) {
 //     dbFakeStream.init();
 // });
-
 angular.module('huyovy').run(function($rootScope) {
 
     $rootScope.safeApply = function(fn) {
