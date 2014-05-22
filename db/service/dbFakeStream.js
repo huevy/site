@@ -18,7 +18,7 @@ angular.module('db').factory('dbFakeStream', function($interval, $rootScope, dbM
   var dbFakeStream = {
     init: function() {
       dbMembers.get().then(function(mem) {
-        $interval(emulate.bind(null, mem), 300);
+        $interval(emulate.bind(null, mem), 1300);
       });
     }
   };

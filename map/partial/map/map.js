@@ -6,13 +6,22 @@ angular.module('map')
       dbMembers,
       dbTail,
       HtmlIcon,
-      leafletData) {
+      leafletData,
+      htmlChunk) {
 
       var L = $window.L;
       var map = null;
-      var baloon = L.popup({
-        offset: [0, -20]
+      var popupTwit = L.popup({
+        offset: [0, -18]
       });
+      popupTwit.setContent(htmlChunk($scope, '<twit-card class="in-popup" media="tail[0]"></twit-card>'));
+
+      var popupMember = L.popup({
+        offset: [0, -18]
+      });
+      popupMember.setContent(htmlChunk($scope, '<member-card class="in-popup" member="currentMember"></member-card>'));
+
+
       var markersByScreenName = {};
 
       angular.extend($scope, {
@@ -47,7 +56,12 @@ angular.module('map')
               html: '<div style="position:absolute;"><marker member="member"></marker></div>',
             })
           });
-          mrk.bindPopup(member.name);
+          // mrk.bindPopup(member.name);
+          mrk.on('click', function() {
+            $scope.$apply(function() {
+              showPopupMember(mrk, member);
+            });
+          });
 
           markersByScreenName[member.screen_name] = mrk;
 
@@ -63,6 +77,7 @@ angular.module('map')
 
       function init() {
         dbMembers.get().then(function(memberItems) {
+          memberItems = _(memberItems).sortBy('followers_count').values();
           populateMarkersFromMembers(memberItems);
           dbTail.init();
           $scope.tail = dbTail.data;
@@ -79,13 +94,20 @@ angular.module('map')
         if (!mrk) {
           return;
         }
-        showBaloon(mrk, twit);
+        showPopupTwit(mrk, twit);
       }
 
-      function showBaloon(mrk, twit) {
-        baloon.setContent(twit.text); //TODO: XSS!
-        baloon.setLatLng(mrk.getLatLng());
-        baloon.openOn(map);
+      function showPopupTwit(mrk, twit) {
+        popupTwit.setLatLng(mrk.getLatLng());
+        popupTwit.openOn(map);
+        popupTwit.update();
+      }
+
+      function showPopupMember(mrk, member) {
+        $scope.currentMember = member;
+        popupMember.setLatLng(mrk.getLatLng());
+        popupMember.openOn(map);
+        popupTwit.update();
       }
 
     });

@@ -11,7 +11,10 @@ angular.module('db')
         var newUser = _(user).pick([
           'screen_name',
           'name',
-          'profile_image_url_https'
+          'profile_image_url_https',
+          'statuses_count',
+          'followers_count',
+          'friends_count'
         ]).value();
         newUser.place = null;
         if (locations.hasOwnProperty(newUser.screen_name)) {
