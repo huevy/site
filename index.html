@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html ng-app="huyovy">
 <head>
-  <title></title>
+  <title>Лига Хуёвых Городов</title>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 	<meta charset="utf-8">
   <link href="app.less" type="text/css" rel="stylesheet/less">
@@ -26,10 +26,12 @@
   <script src="bower_components/angular-bootstrap/ui-bootstrap-tpls.js"></script>
   <script src="bower_components/angular-ui-utils/ui-utils.js"></script>
   <script src="bower_components/angular-leaflet-directive/dist/angular-leaflet-directive.js"></script>
-  <script src="bower_components/papa.parse/jquery.parse.js"></script>
   <script src="bower_components/lodash/dist/lodash.js"></script>
-  <script src="bower_components/headjs/dist/1.0.0/head.load.js"></script>
   <script src="bower_components/leaflet-dist/leaflet-src.js"></script>
+
+  <script src="bower_components/angular-sanitize/angular-sanitize.js"></script>
+  <script src="bower_components/showdown/src/showdown.js"></script>
+  <script src="bower_components/angular-markdown-directive/markdown.js"></script>
 
   <!-- Add New Bower Component JS Above -->
 
@@ -52,13 +54,17 @@
   <script src="service/htmlChunk.js"></script>
   <script src="directive/memberCard/memberCard.js"></script>
   <script src="db/service/dbTwits.js"></script>
+  <script src="db/service/dbTopUsers.js"></script>
+  <script src="page/page.js"></script>
+  <script src="page/partial/page/page.js"></script>
+  <script src="db/service/dbPage.js"></script>
   <!-- Add New Component JS Above -->
 
   <div>
     <nav class="navbar navbar-default">
       <a class="navbar-brand" href="#"><big>Хуёвые города</big></a>
       <ul class="pull-right nav navbar-nav">
-        <li><a>Стать участником</a><li>
+        <li><a ui-sref="page({id:'membership'})">Стать участником</a><li>
       </ul>
     </nav>
     <div id="content" class="container">

@@ -99,7 +99,10 @@ module.exports = function(grunt) {
             dest: 'dist/',
             filter: 'isFile',
             expand: true
-          }
+          }, {
+            src: ['pages/**/*.md'],
+            dest: 'dist/'
+          },
           //{src: ['bower_components/angular-ui-utils/ui-utils-ieshiv.min.js'], dest: 'dist/'},
           //{src: ['bower_components/select2/*.png','bower_components/select2/*.gif'], dest:'dist/css/',flatten:true,expand:true},
           //{src: ['bower_components/angular-mocks/angular-mocks.js'], dest: 'dist/'}

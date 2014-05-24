@@ -5,6 +5,7 @@ angular.module('map')
       $q,
       dbMembers,
       dbTail,
+      dbTopUsers,
       HtmlIcon,
       leafletData,
       htmlChunk) {
@@ -81,11 +82,11 @@ angular.module('map')
           populateMarkersFromMembers(memberItems);
           dbTail.init();
           $scope.tail = dbTail.data;
+          dbTopUsers.get(5).then(function(top) {
+            $scope.topUsers = top;
+          });
         });
         $scope.$on('db:stream:twit', onTwit);
-        $scope.$watchCollection('tail', function() {
-          console.log($scope.tail);
-        });
       }
 
       function onTwit(event, twit) {

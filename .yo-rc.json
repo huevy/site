@@ -26,6 +26,10 @@
       {
         "name": "db",
         "file": "db/db.js"
+      },
+      {
+        "name": "page",
+        "file": "page/page.js"
       }
     ]
   }
