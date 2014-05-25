@@ -31,7 +31,9 @@ angular.module('map').controller('PeopleCtrl', function(
 
   function init() {
     dbMembers.get().then(function(members) {
-      $scope.members = members;
+      $scope.members = _(members).sortBy(function(member) {
+        return -member.followers_count;
+      }).value();
       populateMarkersFromMembers(members);
     });
   }
