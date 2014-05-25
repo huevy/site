@@ -5,10 +5,18 @@ angular.module('db').factory('dbStream',
       var sock = $window.io.connect(dbApis.socket, {
         transports: ['xhr-polling']
       });
+
       sock.on('twit', function(data) {
-        console.log('twit', data);
         $rootScope.$broadcast('db:stream:twit', data);
-        $rootScope.$broadcast('db:stream:twit:' + data.screenName, data);
+      });
+
+      sock.on('media', function(data) {
+        for (var i = 0; i < data.media.length; i++) {
+          $rootScope.$broadcast('db:stream:photo', {
+            twit: data.twit,
+            photo: data.media[i]
+          });
+        }
       });
     }
 

@@ -30,6 +30,10 @@
       {
         "name": "page",
         "file": "page/page.js"
+      },
+      {
+        "name": "feed",
+        "file": "feed/feed.js"
       }
     ]
   }

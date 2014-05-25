@@ -1,4 +1,4 @@
-angular.module('huyovy', ['ui.bootstrap', 'ui.utils', 'ui.router', 'ngAnimate', 'map', 'db', 'page']);
+angular.module('huyovy', ['ui.bootstrap', 'ui.utils', 'ui.router', 'ngAnimate', 'map', 'db', 'page', 'feed']);
 
 angular.module('huyovy').config(function($stateProvider, $urlRouterProvider) {
 
