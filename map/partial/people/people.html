@@ -1,0 +1,17 @@
+<div class="col-md-12" ng-controller="PeopleCtrl">
+  <div class="col-md-4 col-sm-4">
+    <member-card
+      ng-repeat="_ in members"
+      member="_"></member-card>
+  </div>
+
+  <div class="col-md-8 col-sm-8">
+    <leaflet
+      id="mapLeafletPeople"
+      defaults="defaults"
+      center="center"
+      height="600px"
+      ></leaflet>
+  </div>
+
+</div>

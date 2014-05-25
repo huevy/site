@@ -80,7 +80,6 @@ angular.module('map')
         dbMembers.get().then(function(memberItems) {
           memberItems = _(memberItems).sortBy('followers_count').values();
           populateMarkersFromMembers(memberItems);
-          dbTail.init();
           $scope.tail = dbTail.data;
           dbTopUsers.get(5).then(function(top) {
             $scope.topUsers = top;
@@ -108,7 +107,7 @@ angular.module('map')
         $scope.currentMember = member;
         popupMember.setLatLng(mrk.getLatLng());
         popupMember.openOn(map);
-        popupTwit.update();
+        popupMember.update();
       }
 
     });

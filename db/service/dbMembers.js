@@ -1,5 +1,5 @@
 angular.module('db')
-  .factory('dbMembers', function($q, $http) {
+  .factory('dbMembers', function($q, $http, dbApis) {
 
 
     function compose(collections) {
@@ -37,13 +37,13 @@ angular.module('db')
       get: function() {
 
         return $q.all([
-          $http.get('/data/users.json', {
+          $http.get(dbApis.users, {
             cache: true
           }).then(getData),
-          $http.get('/data/locations.json', {
+          $http.get(dbApis.locations, {
             cache: true
           }).then(getData),
-          $http.get('/data/geo.json', {
+          $http.get(dbApis.geo, {
             cache: true
           }).then(getData)
         ]).then(compose);

@@ -6,6 +6,10 @@ angular.module('map').config(function($stateProvider) {
     url: '/',
     templateUrl: 'map/partial/map/map.html'
   });
+  $stateProvider.state('people', {
+        url: '/people',
+        templateUrl: 'map/partial/people/people.html'
+    });
   /* Add New States Above */
 
 });

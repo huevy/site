@@ -1,10 +1,8 @@
 angular.module('db').factory('dbStream',
-  function($window, $q, $rootScope, streamConfig) {
-    var head = $window.head;
-
+  function($window, $q, $rootScope, dbApis) {
 
     function listen() {
-      var sock = $window.io.connect(streamConfig.socket, {
+      var sock = $window.io.connect(dbApis.socket, {
         transports: ['xhr-polling']
       });
       sock.on('twit', function(data) {
@@ -22,7 +20,3 @@ angular.module('db').factory('dbStream',
     };
     return stream;
   });
-
-angular.module('db').constant('streamConfig', {
-  socket: 'http://huevy-socket.herokuapp.com:80/'
-});

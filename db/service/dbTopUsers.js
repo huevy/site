@@ -1,10 +1,8 @@
-angular.module('db').factory('dbTopUsers', function($http, $q, dbMembers) {
+angular.module('db').factory('dbTopUsers', function($http, $q, dbMembers, dbApis) {
 
-
-  var URL = 'http://huevy-socket.herokuapp.com/api/v1/top';
 
   function getTop(lim) {
-    return $http.get(URL, {
+    return $http.get(dbApis.top, {
       cache: true
     }).then(function(res) {
       return res.data;
