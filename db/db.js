@@ -8,6 +8,7 @@ angular.module('db').config(function($stateProvider) {
 
 
 
-angular.module('db').run(function(dbTail) {
+angular.module('db').run(function(dbTail, dbPhotoTail) {
   dbTail.init();
+  dbPhotoTail.init();
 });
