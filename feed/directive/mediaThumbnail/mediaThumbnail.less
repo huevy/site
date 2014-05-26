@@ -1,12 +1,25 @@
 .media-thumbnail {
   .thumbnail;
 
-  @media (min-width: @screen-sm-min) {
-    height: 200px;
-  }
-  @media (min-width: @screen-md-min) {
-    height: 400px;
+  // background: @gray-light;
+
+  position:relative;
+
+  img {
+    max-height: 100%;
   }
 
+  .caption {
+    position:absolute;
+    bottom: 0;
+    background: #202020;
+    color: #E8E8E8;
+    display: none;
+    width: 100%;
+    opacity: 0.8;
+  }
+  &:hover .caption {
+    display: block;
+  }
 
 }
