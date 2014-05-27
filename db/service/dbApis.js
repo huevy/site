@@ -1,6 +1,6 @@
 angular.module('db').factory('dbApis', function($location) {
 
-  var hubServer = '//huevy-socket.herokuapp.com:80';
+  var hubServer = 'http://huevy-socket.herokuapp.com:80';
   var staticData = '/data';
 
   var dbApis = {
